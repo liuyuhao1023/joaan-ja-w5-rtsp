@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+auth.json
+cameras.json
+mediamtx.yml
+*.apk
+*.pcap
+*.pcapng
+*.jpg
+*.jpeg
+*.mp4
+*.log
+__pycache__/
+.venv/
+.DS_Store
