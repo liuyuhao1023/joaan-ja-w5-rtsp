@@ -1,0 +1,36 @@
+# Replace CAMERA_USER / CAMERA_PASSWORD and sample addresses locally.
+# URL-encode reserved characters in the RTSP username/password.
+logLevel: info
+api: true
+apiAddress: 127.0.0.1:9997
+rtsp: true
+rtspAddress: :8554
+rtspTransports: [tcp]
+rtmp: false
+hls: false
+webrtc: false
+srt: false
+moq: false
+authInternalUsers:
+  - user: any
+    ips: [127.0.0.1, '::1']
+    permissions:
+      - action: api
+      - action: read
+      - action: publish
+        path: joaan/nvr
+  - user: any
+    ips: [192.168.10.0/24, 192.168.20.0/24]
+    permissions:
+      - action: read
+paths:
+  joaan/main:
+    source: rtsp://CAMERA_USER:CAMERA_PASSWORD@192.168.10.250:554/live/ch0_0
+    rtspTransport: tcp
+    sourceOnDemand: false
+  joaan/sub:
+    source: rtsp://CAMERA_USER:CAMERA_PASSWORD@192.168.10.250:554/live/ch0_1
+    rtspTransport: tcp
+    sourceOnDemand: false
+  joaan/nvr:
+    source: publisher
