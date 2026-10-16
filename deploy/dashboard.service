@@ -1,0 +1,23 @@
+[Unit]
+Description=JA-W5 RTSP management dashboard
+After=network-online.target
+Wants=network-online.target
+[Service]
+Type=simple
+User=joaan-relay
+Group=joaan-relay
+WorkingDirectory=/opt/joaan-ja-w5-rtsp
+Environment=PUBLIC_HOST=192.168.10.10
+Environment=WEB_BIND=127.0.0.1
+Environment=DATA_DIR=/var/lib/joaan-dashboard
+StateDirectory=joaan-dashboard
+StateDirectoryMode=0700
+ExecStart=/usr/bin/python3 /opt/joaan-ja-w5-rtsp/src/dashboard.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+[Install]
+WantedBy=multi-user.target
